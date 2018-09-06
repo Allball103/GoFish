@@ -2,6 +2,7 @@
 Procedure
 
 -52 cards in an array
+-(play or exist?)-->bool exist
 
 while (exist == false){
 
