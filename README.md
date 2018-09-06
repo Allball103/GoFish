@@ -1,7 +1,14 @@
-# GoFish
-Procedure
+# GoFish Procedure
 
--52 cards in an array
+
+
+
+
+
+
+52 cards in an array
+
+(play or exist?)-->bool exist
 
 while (exist == false){
 
@@ -13,7 +20,10 @@ while (exist == false){
 
 }
 
-Classes:
+"Thanks for playing!"
+
+
+# Classes:
   - Game class
     - Responsible for: 
       - logic 
