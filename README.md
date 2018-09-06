@@ -1,7 +1,7 @@
 # GoFish
 CS 205 Go Fish
 
-0.game start
+0. game start
 1. 52 cards in an array
 2. you and computer get 7 cards
 3. game play
