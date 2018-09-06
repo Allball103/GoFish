@@ -1,11 +1,5 @@
 # GoFish Procedure
 
-
-
-
-
-
-
 52 cards in an array
 
 (play or exist?)-->bool exist
@@ -24,23 +18,22 @@ while (exist == false){
 
 
 # Classes:
-  - Game class
-    - Responsible for: 
-      - logic 
-        - loop running the game, keeping track of turns, etc.
-        - the deck
-        - settings
-        - menu
+1. Game class
+- logic
+- loop running the game, keeping track of turns, etc
+- the deck
+- settings
+- menu
        
- Player Class:
-      - Responsible for:
-        - hand vector
-        - "set" field for groups of 4 
-        - keeping track of possible guesses
+2. Player Class:
+- Responsible for:
+- hand vector
+- "set" field for groups of 4 
+- keeping track of possible guesses
         
- Opponent extends Player class:
-      - Responsible for:
-         - "smart" or "dumb" field
-         - guess logic
+3. Opponent extends Player class:
+- Responsible for:
+- "smart" or "dumb" field
+- guess logic
          
          
