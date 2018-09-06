@@ -19,21 +19,19 @@ while (exist == false){
 
 # Classes:
 1. Game class
-- logic
-- loop running the game, keeping track of turns, etc
-- the deck
-- settings
-- menu
+- [ ] logic
+- [ ] loop running the game, keeping track of turns, etc
+- [ ] the deck
+- [ ] settings
+- [ ] menu
        
 2. Player Class:
-- Responsible for:
-- hand vector
-- "set" field for groups of 4 
-- keeping track of possible guesses
+- [ ] hand vector
+- [ ] "set" field for groups of 4 
+- [ ] keeping track of possible guesses
         
 3. Opponent extends Player class:
-- Responsible for:
-- "smart" or "dumb" field
-- guess logic
+- [ ] "smart" or "dumb" field
+- [ ] guess logic
          
          
