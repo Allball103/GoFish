@@ -22,13 +22,13 @@ Classes:
         - settings
         - menu
        
-  Player Class
+ Player Class:
       - Responsible for:
         - hand vector
         - "set" field for groups of 4 
         - keeping track of possible guesses
         
-  Opponent extends Player class
+ Opponent extends Player class:
       - Responsible for:
          - "smart" or "dumb" field
          - guess logic
