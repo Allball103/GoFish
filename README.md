@@ -1,6 +1,6 @@
 # GoFish Procedure
 
-"Welcome to Gofish Game!\n"
+"Welcome to Gofish Game!"
 
 - [x] 52 cards in an array
 
