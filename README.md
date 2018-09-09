@@ -14,11 +14,11 @@ while (exist == false){
 - [x] you and computer get 7 cards
 - [x] total number of cards is always 52
 - game play
-       - [x] sort cards to display
-       - [x] ask what card is needed
-       - [ ] goFish() --> don't have the card--> draw a card
-       - [ ] exchange() --> have the card --> give out the card 
-- [ ] game finish 
+- [x] sort cards to display
+- [x] ask what card is needed
+- [ ] goFish() --> don't have the card--> draw a card
+- [ ] exchange() --> have the card --> give out the card 
+- game finish 
 - [ ] (play or exist?)-->exist
 
 }
