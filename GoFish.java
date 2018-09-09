@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Random;
 public class GoFish {
 
@@ -30,27 +31,41 @@ public class GoFish {
 		}
 		
 //************************ Check Start********************************
-		System.out.println("*************************** Game started ***********************"
-				+ " \n\nPool deck:");
-		printArray(deck);
-		System.out.println("Computer deck:");
-		printArray(comp);
-		System.out.println("My deck:");
+//		System.out.println("*************************** Game started ***********************"
+//				+ " \n\nPool deck:");
+//		printArray(deck);
+//		System.out.println("Computer deck:");
+//		printArray(comp);
+//		System.out.println("My deck:");
+//		printArray(mine);
+//		reset(deck,mine,comp);
+//		System.out.println("Reseted pool deck:");
+//		printArray(deck);
+//		System.out.println("Reseted my deck:");
+//		printArray(mine);
+//		System.out.println("Reseted computer deck:");
+//		printArray(comp);
+		
+		
 		printArray(mine);
-		reset(deck,mine,comp);
-		System.out.println("Reseted pool deck:");
-		printArray(deck);
-		System.out.println("Reseted my deck:");
-		printArray(mine);
-		System.out.println("Reseted computer deck:");
+		sort(mine);
+		printArray(mine);	
+		
+		
 		printArray(comp);
+		sort(comp);
+		printArray(comp);
+		
 //************************ Check End********************************
 		
 		
 //****************** Game Play Start ************************************
-//****************** Game Play End ************************************
+	    System.out.println("What rank do you want to ask for?");        
+		askRank(mine);
+		askRank(comp);
 
-		
+//****************** Game Play End ************************************
+	
 	}
 	
 	
@@ -94,9 +109,8 @@ public static void printArray(Card[] arr) {
 //Print out the information about a card
 public static void info(Card card) {
 	//if the card object is null, print nothing
-	if (card == null) {
-		return;
-	}
+	if (card != null) {
+	
 	String s = card.getSuit();
 	int r = card.getRank();
 	
@@ -118,6 +132,7 @@ public static void info(Card card) {
 			break;
 		default:
 			System.out.println(s+" "+r);	
+	}
 	}
 }
 
@@ -149,4 +164,33 @@ public static void drawACard(Card[] to, Card[] from) {
 			
 	}
 
+
+//Sort the deck in ascending order as the deck changes
+public static void sort(Card[] c) {
+    for(int i=0;i<c.length;i++){
+        for(int j=0;j<c.length;j++){
+        	if(c[i] != null && c[j] != null && c[i].getRank()<c[j].getRank()){
+                int tempr=c[i].getRank();
+                String temps=c[i].getSuit();           
+                c[i].setRank(c[j].getRank());
+                c[i].setSuit(c[j].getSuit());
+                c[j].setRank(tempr);
+                c[j].setSuit(temps);
+                
+            }
+
+        }
+    }
+}
+
+//Ask the other side what rank is needed
+public static void askRank(Card[] c) {
+	HashSet<Integer> set = new HashSet<Integer>();
+	for(int i = 0; i < c.length; i++) {
+		if(c[i] != null) {
+		set.add(c[i].getRank());
+	}}
+	System.out.println(set);
+
+}
 }
