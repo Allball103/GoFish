@@ -4,14 +4,14 @@
 
 - [x] 52 cards in an array
 
-(play or exist?)-->bool exist
+- [ ] (play or exist?)-->bool exist
 
 while (exist == false){
 
-- [ ] gamereset() 
-- [x] shaffle()
-- [ ] getACard()
-- [ ] you and computer get 7 cards
+- [x] gamereset() 
+- [x] shuffle()
+- [x] getACard()
+- [x] you and computer get 7 cards
 - [ ] game play
 - [ ] game finish
 - [ ] (play or exist?)-->exist
