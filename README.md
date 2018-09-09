@@ -1,16 +1,19 @@
 # GoFish Procedure
 
-52 cards in an array
+-[x] 52 cards in an array
 
 (play or exist?)-->bool exist
 
 while (exist == false){
 
-- [x] game start--> game reset: shaffle()
-- you and computer get 7 cards
-- game play
-- game finish
-- (play or exist?)-->exist
+- [ ] game start
+- [ ] gamereset() 
+- [x] shaffle()
+- [ ] getACard()
+- [ ]you and computer get 7 cards
+- [ ]game play
+- [ ]game finish
+- [ ](play or exist?)-->exist
 
 }
 
