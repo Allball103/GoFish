@@ -2,7 +2,6 @@ import java.util.Random;
 public class GoFish {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		System.out.println("Welcome to Gofish Game!\n");
 		
 		
@@ -29,22 +28,24 @@ public class GoFish {
 			drawACard(mine,deck);
 			drawACard(comp,deck);
 		}
-//************************ Check ********************************
-//		System.out.println("*************************** Game started ***********************"
-//				+ " \n\nPool deck:");
-//		printArray(deck);
-//		System.out.println("Computer deck:");
-//		printArray(comp);
-//		System.out.println("My deck:");
-//		printArray(mine);
-//		reset(deck,mine,comp);
-//		System.out.println("Reseted pool deck:");
-//		printArray(deck);
-//		System.out.println("Reseted my deck:");
-//		printArray(mine);
-//		System.out.println("Reseted computer deck:");
-//		printArray(comp);
 		
+//************************ Check Start********************************
+		System.out.println("*************************** Game started ***********************"
+				+ " \n\nPool deck:");
+		printArray(deck);
+		System.out.println("Computer deck:");
+		printArray(comp);
+		System.out.println("My deck:");
+		printArray(mine);
+		reset(deck,mine,comp);
+		System.out.println("Reseted pool deck:");
+		printArray(deck);
+		System.out.println("Reseted my deck:");
+		printArray(mine);
+		System.out.println("Reseted computer deck:");
+		printArray(comp);
+//************************ Check End********************************
+
 		
 	}
 	
