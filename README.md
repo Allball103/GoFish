@@ -6,14 +6,13 @@
 
 while (exist == false){
 
-- [ ] game start
 - [ ] gamereset() 
 - [x] shaffle()
 - [ ] getACard()
-- [ ]you and computer get 7 cards
-- [ ]game play
-- [ ]game finish
-- [ ](play or exist?)-->exist
+- [ ] you and computer get 7 cards
+- [ ] game play
+- [ ] game finish
+- [ ] (play or exist?)-->exist
 
 }
 
