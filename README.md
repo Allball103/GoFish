@@ -1,6 +1,6 @@
 # GoFish Procedure
 
--[x] 52 cards in an array
+- [x] 52 cards in an array
 
 (play or exist?)-->bool exist
 
