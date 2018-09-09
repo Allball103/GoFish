@@ -42,7 +42,7 @@ public class GoFish {
 		printArray(deck);
 		System.out.println("Reseted my deck:");
 		printArray(mine);
-		System.out.println("Reseted compter deck:");
+		System.out.println("Reseted computer deck:");
 		printArray(comp);
 	}
 	
