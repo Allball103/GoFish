@@ -6,7 +6,7 @@
 
 while (exist == false){
 
-- game start--> game reset: shaffle()
+- [x] game start--> game reset: shaffle()
 - you and computer get 7 cards
 - game play
 - game finish
@@ -21,7 +21,7 @@ while (exist == false){
 0. Card class
 - [x] rank
 - [x] suit
-- [x] getters && setters
+- [x] getters & setters
 
 1. Game class
 - [ ] logic
