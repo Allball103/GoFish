@@ -25,8 +25,8 @@ public class GoFish {
 
 		
 //****************** Get cards ready ************************************
-		ArrayList<Card> mine = new ArrayList<Card>();
-		ArrayList<Card> comp = new ArrayList<Card>();
+// 		ArrayList<Card> mine = new ArrayList<Card>();
+// 		ArrayList<Card> comp = new ArrayList<Card>();
 
 	}
 	
