@@ -10,8 +10,8 @@ while (exist == false){
 
 - [x] gamereset() 
 - [x] shuffle()
-- [x] getACard()
-- [x] you and computer get 7 cards
+- [x] drawACard()
+- [x] you and computer get 7 cards-->drawACard()*7
 - [x] total number of cards is always 52
 - game play
 - [x] sort cards to display
