@@ -1,5 +1,7 @@
 # GoFish Procedure
 
+"Welcome to Gofish Game!\n"
+
 - [x] 52 cards in an array
 
 (play or exist?)-->bool exist
