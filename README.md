@@ -18,6 +18,11 @@ while (exist == false){
 
 
 # Classes:
+0. Card class
+- [x] rank
+- [x] suit
+- [x] getters && setters
+
 1. Game class
 - [ ] logic
 - [ ] loop running the game, keeping track of turns, etc
