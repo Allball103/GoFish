@@ -12,6 +12,7 @@ while (exist == false){
 - [x] shuffle()
 - [x] getACard()
 - [x] you and computer get 7 cards
+- [x] total number of cards is always 52
 - [ ] game play
 - [ ] game finish
 - [ ] (play or exist?)-->exist
