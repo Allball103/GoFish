@@ -18,9 +18,10 @@ while (exist == false){
 - [x] ask what card is needed
 - [ ] goFish() --> don't have the card--> draw a card
 - [ ] exchange() --> have the card --> give out the card 
+- [ ] getScore() --> 1 credit for having 4 cards with the same rank
+- [ ] winner() --> who gets more completed deck
 - game finish 
 - [ ] (play or exist?)-->exist
-
 }
 
 "Thanks for playing!"
