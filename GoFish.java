@@ -29,21 +29,23 @@ public class GoFish {
 			drawACard(mine,deck);
 			drawACard(comp,deck);
 		}
-		//Check
-		System.out.println("*************************** Game started ***********************"
-				+ " \n\nPool deck:");
-		printArray(deck);
-		System.out.println("Computer deck:");
-		printArray(comp);
-		System.out.println("My deck:");
-		printArray(mine);
-		reset(deck,mine,comp);
-		System.out.println("Reseted pool deck:");
-		printArray(deck);
-		System.out.println("Reseted my deck:");
-		printArray(mine);
-		System.out.println("Reseted computer deck:");
-		printArray(comp);
+//************************ Check ********************************
+//		System.out.println("*************************** Game started ***********************"
+//				+ " \n\nPool deck:");
+//		printArray(deck);
+//		System.out.println("Computer deck:");
+//		printArray(comp);
+//		System.out.println("My deck:");
+//		printArray(mine);
+//		reset(deck,mine,comp);
+//		System.out.println("Reseted pool deck:");
+//		printArray(deck);
+//		System.out.println("Reseted my deck:");
+//		printArray(mine);
+//		System.out.println("Reseted computer deck:");
+//		printArray(comp);
+		
+		
 	}
 	
 	
@@ -53,8 +55,9 @@ public class GoFish {
 	
 	
 //*************************** Methods ********************************
-	
-	static void shuf(Card[] arr) {
+
+//shuffle a card deck
+public static void shuf(Card[] arr) {
 		  int ran, tempr;
 		  String temps;
 		  Random random = new Random();
@@ -70,8 +73,9 @@ public class GoFish {
 		      arr[i].setSuit(temps);
 		  }
 	}
-	
-	static void printArray(Card[] arr) {
+
+//Print out what cards are in a deck
+public static void printArray(Card[] arr) {
 	  	int count = 0;
 		for(int i = 0; i < arr.length; i++) {
 		info(arr[i]);
@@ -81,18 +85,19 @@ public class GoFish {
 		}
 		System.out.println("Number of cards: "+count+"\n");	
 		}
-	
-	
 
-
-
+//Print out the information about a card
 public static void info(Card card) {
-		// TODO Auto-generated method stub
+	//if the card object is null, print nothing
 	if (card == null) {
 		return;
 	}
 	String s = card.getSuit();
 	int r = card.getRank();
+	
+	// number   1    11   12   13 
+	// rank     A    J    Q    K
+	
 	switch(r) {
 		case 1:
 			System.out.println(s+" "+"A");	
@@ -110,6 +115,8 @@ public static void info(Card card) {
 			System.out.println(s+" "+r);	
 	}
 }
+
+//Make the pool deck unsorted, my deck and computer deck have nothing
 public static void reset(Card[] p,Card[] m,Card[] c) {
 	for(int i = 0; i < 13; i++) {	
 		p[i] = new Card("Diamond",i+1);
@@ -123,6 +130,9 @@ public static void reset(Card[] p,Card[] m,Card[] c) {
 	}
 }
 
+
+//Draw a card by making the pool deck object null, and creating a same
+//object in the same index for either my deck or computer deck
 public static void drawACard(Card[] to, Card[] from) {
 	for(int i = 0; i < from.length; i++) {
 		if(from[i] != null) {
