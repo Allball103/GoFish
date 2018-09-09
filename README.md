@@ -15,7 +15,8 @@ while (exist == false){
 - [x] total number of cards is always 52
 - game play
 - [x] sort cards to display
-- [x] ask what card is needed
+- [x] askRank()-->display what card of rank is needed -->player knows what ranks to ask
+- [ ] choose() -->make computer to choose
 - [ ] goFish() --> don't have the card--> draw a card
 - [ ] exchange() --> have the card --> give out the card 
 - [ ] getScore() --> 1 credit for having 4 cards with the same rank
