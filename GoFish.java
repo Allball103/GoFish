@@ -13,11 +13,11 @@ public class GoFish {
 		Card[] comp = new Card[52];
 		
 		reset(deck,mine,comp);
-		System.out.println("Unshuffled pool deck:");
-		printArray(deck);
-		System.out.println("Shuffled pool deck:");
+//		System.out.println("Unshuffled pool deck:");
+//		printArray(deck);
+//		System.out.println("Shuffled pool deck:");
 		shuf(deck);
-		printArray(deck);
+//		printArray(deck);
 		
 
 		
@@ -46,24 +46,27 @@ public class GoFish {
 //		System.out.println("Reseted computer deck:");
 //		printArray(comp);
 		
-		
-		printArray(mine);
-		sort(mine);
-		printArray(mine);	
-		
-		
-		printArray(comp);
-		sort(comp);
-		printArray(comp);
-		
+
+
 //************************ Check End********************************
 		
 		
 //****************** Game Play Start ************************************
-	    System.out.println("What rank do you want to ask for?");        
-		askRank(mine);
-		askRank(comp);
+		System.out.println("My deck:");
 
+//		printArray(mine);
+		sort(mine);
+		printArray(mine);	
+		askRank(mine);
+
+		
+		
+		System.out.println("Computer's deck:");
+
+//		printArray(comp);
+		sort(comp);
+		printArray(comp);
+		askRank(comp);
 //****************** Game Play End ************************************
 	
 	}
@@ -190,7 +193,17 @@ public static void askRank(Card[] c) {
 		if(c[i] != null) {
 		set.add(c[i].getRank());
 	}}
-	System.out.println(set);
+	System.out.println("What rank do you want to ask for?");
+	for(int i : set) {
+		switch(i) {
+		case 1:		System.out.println('A');break;
+		case 11:	System.out.println('J');break;
+		case 12:	System.out.println('Q');break;
+		case 13:	System.out.println('K');break;
+		default:	System.out.println(i);
+		}
+	}
+	System.out.println("\n");
 
 }
 }
