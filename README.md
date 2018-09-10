@@ -14,7 +14,7 @@ while (exist == false){
 - [x] you and computer get 7 cards-->drawACard()*7
 - [x] total number of cards is always 52
 - game play
-- [x] sort cards to display
+- [x] sort cards and get rid of duplicates to display
 - [x] askRank()-->display what card of rank is needed -->player knows what ranks to ask
 - [ ] choose() -->make computer to choose a rank to ask
 - [ ] goFish() --> don't have the card--> draw a card
