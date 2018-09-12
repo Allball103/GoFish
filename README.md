@@ -5,9 +5,9 @@
 - [x] 52 cards in an array
 
 - [ ] (play or exist?)-->bool exist
+- [ ] (game finished?) -->bool winner
 
 while (exist == false){
-
 - [x] gamereset() 
 - [x] shuffle()
 - [x] drawACard()
@@ -15,14 +15,21 @@ while (exist == false){
 - [x] total number of cards is always 52
 - game play
 - [x] sort cards and get rid of duplicates to display
+
+while (winner == false){
+- [x] sort cards and get rid of duplicates to display
 - [ ] askRank()-->display what card of rank is needed -->player knows what ranks to ask --> returns the needed rank (in progress)
 - [ ] choose() -->make computer to choose a rank to ask
 - [ ] goFish() --> don't have the card--> draw a card
 - [ ] exchange() --> have the card --> give out the card 
 - [ ] getScore() --> 1 credit for having 4 cards with the same rank
 - [ ] winner() --> who gets more completed deck
+
+}
+
 - game finish 
 - [ ] (play or exist?)-->exist
+
 }
 
 "Thanks for playing!"
