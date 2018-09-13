@@ -4,7 +4,7 @@
 
 - [x] 52 cards in an array
 
-- [ ] (play or exist?)-->bool exist
+- [ ] (play or exitt?)-->bool exit (mainMenu class)
 - [ ] (game finished?) -->bool winner
 
 while (exist == false){
@@ -28,7 +28,7 @@ while (winner == false){
 }
 
 - game finish 
-- [ ] (play or exist?)-->exist
+- [ ] call the mainMenu class again
 
 }
 
