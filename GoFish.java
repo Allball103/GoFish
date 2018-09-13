@@ -1,5 +1,7 @@
 import java.util.HashSet;
 import java.util.Random;
+import java.util.Scanner;
+
 public class GoFish {
 
 	public static void main(String[] args) {
@@ -205,5 +207,14 @@ public static void askRank(Card[] c) {
 	}
 	System.out.println("\n");
 
+}
+	
+public static void mainMenu(boolean menu){
+    boolean inMenu = menu;
+    while(inMenu == true){
+        System.out.println("What would you like to do?");
+        System.out.println("Type 'Play' to play game");
+        System.out.println("Type 'Exit' to exit");
+    }
 }
 }
