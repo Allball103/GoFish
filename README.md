@@ -1,4 +1,4 @@
-# GoFish Procedure
+# GoFish.java
 
 "Welcome to Gofish Game!"
 
