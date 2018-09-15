@@ -36,25 +36,10 @@ while (winner == false){
 
 
 # Classes:
-0. Card class
+1. Card class
 - [x] rank
 - [x] suit
 - [x] getters & setters
 
-1. Game class
-- [ ] logic
-- [ ] loop running the game, keeping track of turns, etc
-- [ ] the deck
-- [ ] settings
-- [ ] menu
-       
-2. Player Class:
-- [ ] hand vector
-- [ ] "set" field for groups of 4 
-- [ ] keeping track of possible guesses
-        
-3. Opponent extends Player class:
-- [ ] "smart" or "dumb" field
-- [ ] guess logic
-         
+
          
