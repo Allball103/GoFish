@@ -3,17 +3,17 @@
 "Welcome to Gofish Game!"
 
 - [x] 52 cards in an array
-
 - [ ] (play or exitt?)-->bool exit (mainMenu class)
 - [ ] (game finished?) -->bool winner
+
+- game play
 
 while (exist == false){
 - [x] gamereset() 
 - [x] shuffle()
 - [x] drawACard()
-- [x] you and computer get 7 cards-->drawACard()*7
+- [x] you and computer get 7 cards-->drawACard()*7*2
 - [x] total number of cards is always 52
-- game play
 
 while (winner == false){
 - [x] sort()-->sort cards and get rid of duplicates to display
