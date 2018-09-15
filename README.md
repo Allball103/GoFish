@@ -23,6 +23,7 @@ while (winner == false){
 - [ ] exchange() --> have the card --> give out the card 
 - [ ] getScore() --> 1 credit for having 4 cards with the same rank
 - [ ] winner() --> who gets more completed deck
+
 }
 
 - game finish 
