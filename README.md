@@ -14,6 +14,7 @@ while (exist == false){
 - [x] drawACard()
 - [x] you and computer get 7 cards-->drawACard()*7*2
 - [x] total number of cards is always 52
+- [ ] level()-->smart or stupid computer?
 
 while (winner == false){
 - [x] sort()-->sort cards and get rid of duplicates to display
