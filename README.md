@@ -3,7 +3,8 @@
 "Welcome to Gofish Game!"
 
 - [x] 52 cards in an array
-- [x] (play or exit?)-->bool exit (mainMenu class)
+- [x] (play, settings, or exit?)-->bool exit (mainMenu class)
+- [ ] settings() --> menu for different game settings
 - [ ] (game finished?) -->bool winner
 
 - game play
