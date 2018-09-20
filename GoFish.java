@@ -2,84 +2,180 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class GoFish {
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Gofish Game!\n");
+//************************ Start********************************
+		runInterface();
+//*********************** End**********************************
+	}
+	
+//*************************** Methods ********************************
+public static void runInterface() {
 		
+		String nextState = "";
+		boolean cont = true;
 		
-//***************   52 cards into array and shuffle them ************
+		while(cont==true) {
+		nextState = mainMenu();
 		
-		Card[] deck = new Card[52];
-		Card[] mine = new Card[52];
-		Card[] comp = new Card[52];
-		
-		reset(deck,mine,comp);
-//		System.out.println("Unshuffled pool deck:");
-//		printArray(deck);
-//		System.out.println("Shuffled pool deck:");
-		shuf(deck);
-//		printArray(deck);
-		
-
-		
-//****************** Get cards ready ************************************
-
-		
-		//Have 7 cards for each side
-		for(int i = 0; i < 7; i++) {
-			drawACard(mine,deck);
-			drawACard(comp,deck);
+		if(nextState.equals("Exit")) {
+			cont = false;
 		}
 		
-//************************ Check Start********************************
-//		System.out.println("*************************** Game started ***********************"
-//				+ " \n\nPool deck:");
-//		printArray(deck);
-//		System.out.println("Computer deck:");
-//		printArray(comp);
-//		System.out.println("My deck:");
-//		printArray(mine);
-//		reset(deck,mine,comp);
-//		System.out.println("Reseted pool deck:");
-//		printArray(deck);
-//		System.out.println("Reseted my deck:");
-//		printArray(mine);
-//		System.out.println("Reseted computer deck:");
-//		printArray(comp);
+		else if(nextState.equals("Play")) {
+			game();
+		}
 		
+		else if(nextState.equals("Settings")) {
+			settings();
+		}
+		
+		else {
+			System.out.println("INVALID COMMAND");
+		}
+			
+		}
+	}
+
+	
+
+//Settings console interface
+public static void settings() {
+	System.out.println("What would you like to do?");
+    //basically same as mainMenu except using player getter and setters to change behaviour
+	
+}
+
+	//start game
+public static void game() {
+		
+	
+	//***************   52 cards into array and shuffle them ************
+	
+	Card[] deck = new Card[52];
+	Card[] mine = new Card[52];
+	Card[] comp = new Card[52];
+	
+	reset(deck,mine,comp);
+//	System.out.println("Unshuffled pool deck:");
+//	printArray(deck);
+//	System.out.println("Shuffled pool deck:");
+	shuf(deck);
+//	printArray(deck);
+	
+	
+//****************** Get cards ready ************************************
+
+	
+	//Have 7 cards for each side
+	for(int i = 0; i < 7; i++) {
+		drawACard(mine,deck);
+		drawACard(comp,deck);
+	}
+	
+//************************ Check Start********************************
+//	System.out.println("*************************** Game started ***********************"
+//			+ " \n\nPool deck:");
+//	printArray(deck);
+//	System.out.println("Computer deck:");
+//	printArray(comp);
+//	System.out.println("My deck:");
+//	printArray(mine);
+//	reset(deck,mine,comp);
+//	System.out.println("Reseted pool deck:");
+//	printArray(deck);
+//	System.out.println("Reseted my deck:");
+//	printArray(mine);
+//	System.out.println("Reseted computer deck:");
+//	printArray(comp);
+	
 
 
 //************************ Check End********************************
-		
-		
-//****************** Game Play Start ************************************
-		System.out.println("My deck:");
-
-//		printArray(mine);
-		sort(mine);
-		printArray(mine);	
-		askRank(mine);
-
-		
-		
-		System.out.println("Computer's deck:");
-
-//		printArray(comp);
-		sort(comp);
-		printArray(comp);
-		askRank(comp);
-//****************** Game Play End ************************************
+			Player player = new Player(mine);
+			Computer computer = new Computer(comp);
+			String currentCard;
+			Card card;
+			
+			for(int i = 0; i < 10; i++) {
+			player.sort();
+			player.printHand();
+			currentCard = player.askRank();
+			card = computer.checkHand(currentCard);
+			if (card != null) {
+				player.addCard(card);
+				computer.removeCard(card);
+				
+			}
+			else {
+			System.out.println("Computer says Go Fish");
+			player.drawACard(deck);
+			for(int j = 0; j < deck.length; j++) {
+		   		if(deck[j] != null) {
+			   			
+			   				deck[j] = null;
+			   				j = deck.length;
+			   				
+		   	}}
+			}
+			
+			computer.sort();
+			//computer.printHand();
+			currentCard = computer.askRank();
+			System.out.println("Computer asks for any " + currentCard );
+			card = player.checkHand(currentCard);
+			
+			if (card != null) {
+				System.out.println("You Had It. Computer took your " + currentCard);
+				computer.addCard(card);
+				player.removeCard(card);
+				
+			}
+			else {
+				System.out.println("You dont have it. Computer Goes Fishing");
+				computer.drawACard(deck);
+				for(int k = 0; k < deck.length; k++) {
+					if(deck[k] != null) {
+			   			
+		   				deck[k] = null;
+		   				k = deck.length;
+		   				
+					}}
+				
+			}
+			
+			}
+			
+/*
+ 
 	
+	System.out.println("My deck:");
+
+//	printArray(mine);
+	sort(mine);
+	printArray(mine);	
+	askRank(mine);
+
+	
+	
+	System.out.println("Computer's deck:");
+
+//	printArray(comp);
+	sort(comp);
+	printArray(comp);
+	askRank(comp);
+
+	
+	*/
 	}
+
+
+
 	
-	
-	
-	
-	
-	
-	
-//*************************** Methods ********************************
+
 
 //shuffle a card deck
 public static void shuf(Card[] arr) {
@@ -188,33 +284,20 @@ public static void sort(Card[] c) {
     }
 }
 
-//Ask the other side what rank is needed
-public static void askRank(Card[] c) {
-	HashSet<Integer> set = new HashSet<Integer>();
-	for(int i = 0; i < c.length; i++) {
-		if(c[i] != null) {
-		set.add(c[i].getRank());
-	}}
-	System.out.println("What rank do you want to ask for?");
-	for(int i : set) {
-		switch(i) {
-		case 1:		System.out.println('A');break;
-		case 11:	System.out.println('J');break;
-		case 12:	System.out.println('Q');break;
-		case 13:	System.out.println('K');break;
-		default:	System.out.println(i);
-		}
-	}
-	System.out.println("\n");
 
-}
 	
-public static void mainMenu(boolean menu){
-    boolean inMenu = menu;
-    while(inMenu == true){
-        System.out.println("What would you like to do?");
+public static String mainMenu(){
+   
+    	System.out.println("What would you like to do?");
         System.out.println("Type 'Play' to play game");
         System.out.println("Type 'Exit' to exit");
-    }
+        System.out.println("Type 'Setting' to change settings");
+        
+        Scanner in = new Scanner(System.in);
+               
+        String nextState = in.nextLine();
+        
+        
+        return nextState;
 }
 }
