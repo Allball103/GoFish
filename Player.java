@@ -1,4 +1,3 @@
-
 import java.util.HashSet;
 import java.util.Scanner;  
 import java.util.Random;
@@ -9,10 +8,10 @@ public class Player{
 	Card[] hand;
 	
 //methods
- 
-   public Player(Card[] mine) {
+//Constructors 
+ public Player(Card[] mine) {
 	   hand = mine;
-	}
+}
 
 public void player()
    {
@@ -121,9 +120,11 @@ public void player()
    	return card;
    }
 
+    //checks a players hand and returns a card if that card is in the players hand
 	public Card checkHand(String currentCard) {
 		
 		int card = 0;
+		//converts letters to rank
 		if (currentCard.equals("A")) {
 			card = 1;
 		}
@@ -145,7 +146,7 @@ public void player()
 		card = Integer.parseInt(currentCard);
 		}
 		
-		
+		//loop that checks
 	   	for(int i = 0; i < hand.length; i++) {
 	   		if(hand[i] != null) {
 	   			if (hand[i].getRank()==card) {
@@ -158,7 +159,7 @@ public void player()
 	     		
 		
 	}
-
+//adds a card to the hand
 	public void addCard(Card card) {
 		
 		for(int i = 0; i < hand.length; i++) {
@@ -169,7 +170,7 @@ public void player()
 			}
 		}
 			}
-
+//removes a card from the hand
 	public void removeCard(Card card) {
 		for(int i = 0; i < hand.length; i++) {
 	   		if(hand[i] != null) {
