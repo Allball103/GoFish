@@ -8,11 +8,36 @@ public class GoFish {
 	public static void main(String[] args) {
 		System.out.println("Welcome to Gofish Game!\n");
 //************************ Start********************************
+		
+		//************************ Check Start********************************
+//		System.out.println("*************************** Game started ***********************"
+//				+ " \n\nPool deck:");
+//		printArray(deck);
+//		System.out.println("Computer deck:");
+//		printArray(comp);
+//		System.out.println("My deck:");
+//		printArray(mine);
+//		reset(deck,mine,comp);
+//		System.out.println("Reseted pool deck:");
+//		printArray(deck);
+//		System.out.println("Reseted my deck:");
+//		printArray(mine);
+//		System.out.println("Reseted computer deck:");
+//		printArray(comp);
+		
+
+
+	//************************ Check End********************************
+		
+		
+		
 		runInterface();
 //*********************** End**********************************
 	}
 	
 //*************************** Methods ********************************
+	
+//Run interface method loop that asks for user input on what to do next
 public static void runInterface() {
 		
 		String nextState = "";
@@ -49,12 +74,10 @@ public static void settings() {
 	
 }
 
-	//start game
+//start game
 public static void game() {
 		
-	
-	//***************   52 cards into array and shuffle them ************
-	
+//setting up decks for the players
 	Card[] deck = new Card[52];
 	Card[] mine = new Card[52];
 	Card[] comp = new Card[52];
@@ -66,50 +89,35 @@ public static void game() {
 	shuf(deck);
 //	printArray(deck);
 	
-	
-//****************** Get cards ready ************************************
-
-	
 	//Have 7 cards for each side
 	for(int i = 0; i < 7; i++) {
 		drawACard(mine,deck);
 		drawACard(comp,deck);
 	}
 	
-//************************ Check Start********************************
-//	System.out.println("*************************** Game started ***********************"
-//			+ " \n\nPool deck:");
-//	printArray(deck);
-//	System.out.println("Computer deck:");
-//	printArray(comp);
-//	System.out.println("My deck:");
-//	printArray(mine);
-//	reset(deck,mine,comp);
-//	System.out.println("Reseted pool deck:");
-//	printArray(deck);
-//	System.out.println("Reseted my deck:");
-//	printArray(mine);
-//	System.out.println("Reseted computer deck:");
-//	printArray(comp);
-	
-
-
-//************************ Check End********************************
+			// setting up variables
 			Player player = new Player(mine);
 			Computer computer = new Computer(comp);
 			String currentCard;
 			Card card;
 			
+			//for loop for ten turns
 			for(int i = 0; i < 10; i++) {
+				
+			//start of players turn
 			player.sort();
 			player.printHand();
 			currentCard = player.askRank();
 			card = computer.checkHand(currentCard);
+			System.out.println("You ask for " + currentCard );
+			//if card found
 			if (card != null) {
+				System.out.println("Computer had that card!");
 				player.addCard(card);
 				computer.removeCard(card);
 				
 			}
+			//if card not found
 			else {
 			System.out.println("Computer says Go Fish");
 			player.drawACard(deck);
@@ -122,18 +130,21 @@ public static void game() {
 		   	}}
 			}
 			
+			
+			//start of computers turn
 			computer.sort();
 			//computer.printHand();
 			currentCard = computer.askRank();
 			System.out.println("Computer asks for any " + currentCard );
 			card = player.checkHand(currentCard);
-			
+			//if card found
 			if (card != null) {
 				System.out.println("You Had It. Computer took your " + currentCard);
 				computer.addCard(card);
 				player.removeCard(card);
 				
 			}
+			//if card not found
 			else {
 				System.out.println("You dont have it. Computer Goes Fishing");
 				computer.drawACard(deck);
@@ -149,33 +160,8 @@ public static void game() {
 			
 			}
 			
-/*
- 
-	
-	System.out.println("My deck:");
 
-//	printArray(mine);
-	sort(mine);
-	printArray(mine);	
-	askRank(mine);
-
-	
-	
-	System.out.println("Computer's deck:");
-
-//	printArray(comp);
-	sort(comp);
-	printArray(comp);
-	askRank(comp);
-
-	
-	*/
 	}
-
-
-
-	
-
 
 //shuffle a card deck
 public static void shuf(Card[] arr) {
@@ -195,47 +181,7 @@ public static void shuf(Card[] arr) {
 		  }
 	}
 
-//Print out what cards are in a deck
-public static void printArray(Card[] arr) {
-	  	int count = 0;
-		for(int i = 0; i < arr.length; i++) {
-		info(arr[i]);
-		if(arr[i] != null) {
-		count++;
-		}
-		}
-		System.out.println("Number of cards: "+count+"\n");	
-		}
 
-//Print out the information about a card
-public static void info(Card card) {
-	//if the card object is null, print nothing
-	if (card != null) {
-	
-	String s = card.getSuit();
-	int r = card.getRank();
-	
-	// number   1    11   12   13 
-	// rank     A    J    Q    K
-	
-	switch(r) {
-		case 1:
-			System.out.println(s+" "+"A");	
-			break;
-		case 11:
-			System.out.println(s+" "+"J");	
-			break;
-		case 12:
-			System.out.println(s+" "+"Q");	
-			break;
-		case 13:
-			System.out.println(s+" "+"K");
-			break;
-		default:
-			System.out.println(s+" "+r);	
-	}
-	}
-}
 
 //Make the pool deck unsorted, my deck and computer deck have nothing
 public static void reset(Card[] p,Card[] m,Card[] c) {
@@ -266,26 +212,8 @@ public static void drawACard(Card[] to, Card[] from) {
 	}
 
 
-//Sort the deck in ascending order as the deck changes
-public static void sort(Card[] c) {
-    for(int i=0;i<c.length;i++){
-        for(int j=0;j<c.length;j++){
-        	if(c[i] != null && c[j] != null && c[i].getRank()<c[j].getRank()){
-                int tempr=c[i].getRank();
-                String temps=c[i].getSuit();           
-                c[i].setRank(c[j].getRank());
-                c[i].setSuit(c[j].getSuit());
-                c[j].setRank(tempr);
-                c[j].setSuit(temps);
-                
-            }
 
-        }
-    }
-}
-
-
-	
+//main menu
 public static String mainMenu(){
    
     	System.out.println("What would you like to do?");
