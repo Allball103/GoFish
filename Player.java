@@ -1,6 +1,7 @@
 import java.util.HashSet;
 import java.util.Scanner;  
 import java.util.Random;
+import java.io.*;
 
 public class Player{
 	
@@ -30,9 +31,37 @@ public void player()
    		count++;
    		}
    		}
+                //add a blank line for clarity and then print number of cards
+                System.out.println();
    		System.out.println("Number of cards: "+count+"\n");	
    		}
+   
+   //same as printHand() but saves to a file instead of to the console
+   public void saveHand(boolean computer) {
+       try{
+           PrintWriter pw = new PrintWriter(new FileOutputStream( new File("GoFishData.txt"), true)); 
+           if(computer == true){
+                pw.println("Computer's hand:");
+           } else {
+                pw.println("Player's hand:");
+           }    
+           pw.println();
+           int count = 0;
+   		for(int i = 0; i < hand.length; i++) {
+   		saveInfo(hand[i]);
+   		if(hand[i] != null) {
+   		count++;
+   		}
+   		}
+                //add a blank line for clarity
+                pw.println();
+                pw.close();
 
+        } catch(IOException e) {
+            System.out.println("Could not print to file");
+        }
+        
+   }
    //Print out the information about a card
    public void info(Card card) {
    	//if the card object is null, print nothing
@@ -46,21 +75,57 @@ public void player()
    	
    	switch(r) {
    		case 1:
-   			System.out.println(s+" "+"A");	
+   			System.out.print(s+" "+"A ");	
    			break;
    		case 11:
-   			System.out.println(s+" "+"J");	
+   			System.out.print(s+" "+"J ");	
    			break;
    		case 12:
-   			System.out.println(s+" "+"Q");	
+   			System.out.print(s+" "+"Q ");	
    			break;
    		case 13:
-   			System.out.println(s+" "+"K");
+   			System.out.print(s+" "+"K ");
    			break;
    		default:
-   			System.out.println(s+" "+r);	
+   			System.out.print(s+" "+r+" ");	
    	}
    	}
+   }
+   
+   //same as info but saves to a file instead of printing
+   public void saveInfo(Card card){
+       //if the card object is null, print nothing
+   	if (card != null) {
+         try{
+            PrintWriter pw = new PrintWriter(new FileOutputStream( new File("GoFishData.txt"), true)); 
+
+           String s = card.getSuit();
+           int r = card.getRank();
+
+           // number   1    11   12   13 
+           // rank     A    J    Q    K
+
+           switch(r) {
+                   case 1:
+                           pw.print(s+" "+"A ");	
+                           break;
+                   case 11:
+                           pw.print(s+" "+"J ");	
+                           break;
+                   case 12:
+                           pw.print(s+" "+"Q ");	
+                           break;
+                   case 13:
+                           pw.print(s+" "+"K ");
+                           break;
+                   default:
+                           pw.print(s+" "+r+" ");	
+           }
+           pw.close();
+   	} catch (IOException e) {
+            System.out.println("Could not print to file");
+        }
+        }
    }
 
 
