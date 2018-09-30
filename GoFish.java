@@ -2,9 +2,9 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 
-
 public class GoFish {
-
+        public static boolean SmartComp = false;
+        
 	public static void main(String[] args) {
 		System.out.println("Welcome to Gofish Game!\n");
 //************************ Start********************************
@@ -69,8 +69,40 @@ public static void runInterface() {
 
 //Settings console interface
 public static void settings() {
-	System.out.println("What would you like to do?");
-    //basically same as mainMenu except using player getter and setters to change behaviour
+	String nextState = "";
+		boolean cont = true;
+		
+		while(cont==true) {
+		nextState = settingsMenu();
+		
+		if(nextState.equals("Exit")) {
+                        runInterface();
+                        cont = false;
+		}
+		
+		else if(nextState.equals("Difficulty")) {
+                        System.out.println("Type 'Hard' to give the computer perfect memory.");
+                        System.out.println("Type 'Easy' to give the computer no memory.");
+                        
+			Scanner in = new Scanner(System.in);
+        
+                        String difficulty = in.nextLine();
+                        if(difficulty == "Hard"){
+                            GoFish.SmartComp = true;
+                        } else if(difficulty == "Easy"){
+                            GoFish.SmartComp = false;
+                        }
+		}
+		
+		else if(nextState.equals("Lying")) {
+			settings();
+		}
+		
+		else {
+			System.out.println("INVALID COMMAND");
+		}
+			
+		}
 	
 }
 
@@ -97,7 +129,7 @@ public static void game() {
 	
 			// setting up variables
 			Player player = new Player(mine);
-			Computer computer = new Computer(comp);
+			Computer computer = new Computer(comp,GoFish.SmartComp);
 			String currentCard;
 			Card card;
 			
@@ -228,4 +260,18 @@ public static String mainMenu(){
         
         return nextState;
 }
+
+public static String settingsMenu(){
+        System.out.println("What would you like to change?");
+        System.out.println("Type 'Difficulty' to change the Computer's memory ability");
+        System.out.println("Type 'Lying' to set the Computer's ability to lie");
+        System.out.println("Type 'Exit' to go back to the main menu");
+        
+        Scanner in = new Scanner(System.in);
+        
+        String nextState = in.nextLine();
+        
+        return nextState;
+}
+
 }
