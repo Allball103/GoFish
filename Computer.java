@@ -6,10 +6,12 @@ import java.util.Vector;
 public class Computer extends Player {
 
 	Card[] hand;
-		
-	public Computer(Card[] mine) {
+        boolean smart;
+        
+	public Computer(Card[] mine, boolean diff) {
 		super(mine);
 		hand = mine;
+                smart = diff;
 	}
 
 	 public String askRank() {
@@ -29,5 +31,3 @@ public class Computer extends Player {
 		   	//System.out.println("\n");
 		   	//return card;
 		   }
-
-
