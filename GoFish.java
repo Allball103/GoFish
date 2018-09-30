@@ -1,6 +1,7 @@
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
+import java.io.*;
 
 public class GoFish {
         public static boolean SmartComp = false;
@@ -132,26 +133,38 @@ public static void game() {
 			Computer computer = new Computer(comp,GoFish.SmartComp);
 			String currentCard;
 			Card card;
-			
+                        
+                        //create the PrintWriter file; will either make a new file or delete the contents of the old file and start fresh
+                        try{
+                        PrintWriter pw = new PrintWriter(new FileOutputStream( new File("GoFishData.txt"))); 
+                        pw.println("Welcome to Go Fish!");
+                        pw.close();
+                        } catch(IOException e){
+                            System.out.println("Could not print to file");
+                        }
+                        
 			//for loop for ten turns
 			for(int i = 0; i < 10; i++) {
 				
 			//start of players turn
 			player.sort();
 			player.printHand();
+                        player.saveHand(false);
+                        
 			currentCard = player.askRank();
 			card = computer.checkHand(currentCard);
-			System.out.println("You ask for " + currentCard );
+			System.out.println("You ask for any" + currentCard+"s" );
 			//if card found
 			if (card != null) {
-				System.out.println("Computer had that card!");
+				System.out.println("Computer had " + currentCard+"s!");
 				player.addCard(card);
+                                saveMove(currentCard,false,true);
 				computer.removeCard(card);
-				
 			}
 			//if card not found
 			else {
 			System.out.println("Computer says Go Fish");
+                        saveMove(currentCard,false,false);
 			player.drawACard(deck);
 			for(int j = 0; j < deck.length; j++) {
 		   		if(deck[j] != null) {
@@ -166,19 +179,22 @@ public static void game() {
 			//start of computers turn
 			computer.sort();
 			//computer.printHand();
+                        computer.saveHand(true);
 			currentCard = computer.askRank();
-			System.out.println("Computer asks for any " + currentCard );
+			System.out.println("Computer asks for any " + currentCard+"s" );
 			card = player.checkHand(currentCard);
 			//if card found
 			if (card != null) {
-				System.out.println("You Had It. Computer took your " + currentCard);
+				System.out.println("You Had It. Computer took your " + currentCard+"s");
 				computer.addCard(card);
+                                saveMove(currentCard,true,true);
 				player.removeCard(card);
 				
 			}
 			//if card not found
 			else {
 				System.out.println("You dont have it. Computer Goes Fishing");
+                                saveMove(currentCard,true,false);
 				computer.drawACard(deck);
 				for(int k = 0; k < deck.length; k++) {
 					if(deck[k] != null) {
@@ -242,8 +258,26 @@ public static void drawACard(Card[] to, Card[] from) {
 		}			
 			
 	}
-
-
+     
+//saves a move to the file (asking for a card and whether the card was found)
+public static void saveMove(String card, boolean computer, boolean found){
+    try{
+        
+        PrintWriter pw = new PrintWriter(new FileOutputStream( new File("GoFishData.txt"), true)); 
+        if(computer == true && found == true ){
+            pw.println("Computer successfully asked the player if they had any "+card+"s");
+        } else if(computer == true && found == false){
+            pw.println("Computer asked the player if they had any "+card+"s, but was told to Go Fish");
+        } else if(computer == false && found == true){
+            pw.println("Player successfully asked the Computer if they had any "+card+"s");
+        } else{
+            pw.println("Player asked the Computer if they had any "+card+"s, but was told to Go Fish");
+        }
+        pw.close();
+        
+    } catch(IOException e){
+        System.out.println("Could not print to file");    }
+}
 
 //main menu
 public static String mainMenu(){
@@ -251,7 +285,7 @@ public static String mainMenu(){
     	System.out.println("What would you like to do?");
         System.out.println("Type 'Play' to play game");
         System.out.println("Type 'Exit' to exit");
-        System.out.println("Type 'Setting' to change settings");
+        System.out.println("Type 'Settings' to change settings");
         
         Scanner in = new Scanner(System.in);
                
