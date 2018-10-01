@@ -7,6 +7,7 @@ public class Player{
 	
 //variables
 	Card[] hand;
+        int sets;
 	
 //methods
 //Constructors 
@@ -142,8 +143,8 @@ public void player()
    			
    	}
 
-
    //Sort the hand in ascending order as the hand changes
+   //Made by Tau
    public void sort() {
        for(int i=0;i<hand.length;i++){
            for(int j=0;j<hand.length;j++){
@@ -159,7 +160,39 @@ public void player()
 
            }
        }
+       checkForSet();
    }
+   
+//check for set and remove from hand
+//made by Will Wuttke
+public void checkForSet(){
+    //this array has one element for each rank (1-13) that will count how many of each rank are in the hand
+      int[] data  = {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+      int set = 0;
+      boolean isSet = false;
+      
+      for(int i = 0;i < hand.length; i++){
+          if(hand[i] != null){
+         int current = hand[i].getRank();
+         if(data[current] < 3){
+            data[current] +=1;
+         }else{
+             set = current;
+             isSet = true;
+             }
+         }
+      }
+      if(isSet == true){
+        sets+=1;
+        System.out.println("You have a new set!");
+        for(int i = 0;i < hand.length; i++){
+            if(hand[i] != null){
+              if(hand[i].getRank() == set){
+                removeCard(hand[i]);
+            }
+        }}
+    }
+}
 
    //Ask the other side what rank is needed
     public String askRank() {
@@ -226,21 +259,23 @@ public void player()
 	}
 //adds a card to the hand
 	public void addCard(Card card) {
-		
-		for(int i = 0; i < hand.length; i++) {
+		hand[51] = card;
+                sort();
+        }
+		/*for(int i = 0; i < hand.length; i++) {
 			if(hand[i] != null) {	
 		
 			 hand[i] = card;
 			 i = hand.length;
 			}
 		}
-			}
+			}*/
 //removes a card from the hand
-	public void removeCard(Card card) {
-		for(int i = 0; i < hand.length; i++) {
-	   		if(hand[i] != null) {
-	   			if (hand[i].equals(card)) {
-	   				hand[i] = null;
+public void removeCard(Card card) {
+	for(int i = 0; i < hand.length; i++) {
+	   if(hand[i] != null) {
+	   	if (hand[i].equals(card)) {
+	   	hand[i] = null;
 	}
 	   		}}}
 
