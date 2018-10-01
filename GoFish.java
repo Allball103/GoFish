@@ -143,8 +143,8 @@ public static void game() {
                             System.out.println("Could not print to file");
                         }
                         
-			//for loop for ten turns
-			for(int i = 0; i < 10; i++) {
+			//for loop for ten thousand turns
+			for(int i = 0; i < 10000; i++) {
 				
 			//start of players turn
 			player.sort();
@@ -153,7 +153,7 @@ public static void game() {
                         
 			currentCard = player.askRank();
 			card = computer.checkHand(currentCard);
-			System.out.println("You ask for any" + currentCard+"s" );
+			System.out.println("You ask for any " + currentCard+"s" );
 			//if card found
 			if (card != null) {
 				System.out.println("Computer had " + currentCard+"s!");
@@ -257,9 +257,10 @@ public static void drawACard(Card[] to, Card[] from) {
 			}
 		}			
 			
-	}
-     
+}
+   
 //saves a move to the file (asking for a card and whether the card was found)
+//made by Will Wuttke
 public static void saveMove(String card, boolean computer, boolean found){
     try{
         
@@ -280,6 +281,7 @@ public static void saveMove(String card, boolean computer, boolean found){
 }
 
 //main menu
+//made by Aaron Wise
 public static String mainMenu(){
    
     	System.out.println("What would you like to do?");
@@ -308,4 +310,7 @@ public static String settingsMenu(){
         return nextState;
 }
 
+/*public static boolean gameOver(Player player1, Player player2){
+    return player1.sets + player2.sets == 13;
+}*/
 }
