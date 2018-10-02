@@ -5,6 +5,7 @@ import java.io.*;
 
 public class GoFish {
         public static boolean SmartComp = false;
+        public static int percentLying = 0;
         
 	public static void main(String[] args) {
 		System.out.println("Welcome to Gofish Game!\n");
@@ -96,6 +97,12 @@ public static void settings() {
 		}
 		
 		else if(nextState.equals("Lying")) {
+			 System.out.println("Enter an integer value 0 to 100");
+			 Scanner in = new Scanner(System.in);
+			 percentLying = in.nextInt();
+			 
+			 
+			
 			settings();
 		}
 		
@@ -152,7 +159,7 @@ public static void game() {
                         player.saveHand(false);
                         
 			currentCard = player.askRank();
-			card = computer.checkHand(currentCard);
+			card = computer.checkHand(currentCard, percentLying);
 			System.out.println("You ask for any " + currentCard+"s" );
 			//if card found
 			if (card != null) {
