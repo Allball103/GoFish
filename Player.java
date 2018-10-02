@@ -22,10 +22,12 @@ public void player()
     }
    
  
-   //Print out what cards are in a hand
+   //Print out what cards are in the player's hand (will never be called for computer)
    public void printHand() {
-	   System.out.println("hand:");
-   	  	int count = 0;
+       
+	   System.out.println("Your Hand:");
+           GoFish.pause(500);
+   	   int count = 0;
    		for(int i = 0; i < hand.length; i++) {
    		info(hand[i]);
    		if(hand[i] != null) {
