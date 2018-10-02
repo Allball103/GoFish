@@ -3,12 +3,16 @@ import java.util.Random;
 import java.util.Scanner;
 import java.io.*;
 
+//main game class
 public class GoFish {
         public static boolean SmartComp = false;
         public static int percentLying = 0;
         
 	public static void main(String[] args) {
-		System.out.println("Welcome to Gofish Game!\n");
+		System.out.println("Welcome to Go Fish!\n");
+                pause(1000);
+                System.out.println("This program will allow you to play Go Fish against a computer opponent.");
+                pause(1000);
 //************************ Start********************************
 		
 		//************************ Check Start********************************
@@ -70,6 +74,7 @@ public static void runInterface() {
 	
 
 //Settings console interface
+//Made by Will Wuttke
 public static void settings() {
 	String nextState = "";
 		boolean cont = true;
@@ -78,36 +83,40 @@ public static void settings() {
 		nextState = settingsMenu();
 		
 		if(nextState.equals("Exit")) {
-                        runInterface();
                         cont = false;
+                        runInterface();
 		}
 		
 		else if(nextState.equals("Difficulty")) {
                         System.out.println("Type 'Hard' to give the computer perfect memory.");
-                        System.out.println("Type 'Easy' to give the computer no memory.");
+                        System.out.println("Type 'Easy' to give the computer no memory. This is the default game setting.");
                         
 			Scanner in = new Scanner(System.in);
         
                         String difficulty = in.nextLine();
-                        if(difficulty == "Hard"){
+                        if(difficulty.equals("Hard")){
                             GoFish.SmartComp = true;
-                        } else if(difficulty == "Easy"){
+                        } else if(difficulty.equals("Easy")){
                             GoFish.SmartComp = false;
+                        } else{
+                            System.out.println("Command not recognized, computer difficulty is unchanged");
                         }
 		}
 		
 		else if(nextState.equals("Lying")) {
 			 System.out.println("Enter an integer value 0 to 100");
 			 Scanner in = new Scanner(System.in);
-			 percentLying = in.nextInt();
-			 
-			 
-			
-			settings();
+                         int liechance = in.nextInt();
+                         in.nextLine();
+                         if(liechance>=0 && liechance <= 100){
+                            percentLying = in.nextInt();
+                         } else {
+                             System.out.println("Command not recognized, lying chance is unchanged");
+                         }			
 		}
 		
 		else {
-			System.out.println("INVALID COMMAND");
+			System.out.println("Command not recognized, please try again!");
 		}
 			
 		}
@@ -161,9 +170,12 @@ public static void game() {
 			currentCard = player.askRank();
 			card = computer.checkHand(currentCard, percentLying);
 			System.out.println("You ask for any " + currentCard+"s" );
+                        pause(500);
+                        
 			//if card found
 			if (card != null) {
 				System.out.println("Computer had " + currentCard+"s!");
+                                pause(500);
 				player.addCard(card);
                                 saveMove(currentCard,false,true);
 				computer.removeCard(card);
@@ -171,6 +183,7 @@ public static void game() {
 			//if card not found
 			else {
 			System.out.println("Computer says Go Fish");
+                        pause(500);
                         saveMove(currentCard,false,false);
 			player.drawACard(deck);
 			for(int j = 0; j < deck.length; j++) {
@@ -189,10 +202,12 @@ public static void game() {
                         computer.saveHand(true);
 			currentCard = computer.askRank();
 			System.out.println("Computer asks for any " + currentCard+"s" );
+                        pause(500);
 			card = player.checkHand(currentCard);
 			//if card found
 			if (card != null) {
 				System.out.println("You Had It. Computer took your " + currentCard+"s");
+                                pause(500);
 				computer.addCard(card);
                                 saveMove(currentCard,true,true);
 				player.removeCard(card);
@@ -201,6 +216,7 @@ public static void game() {
 			//if card not found
 			else {
 				System.out.println("You dont have it. Computer Goes Fishing");
+                                pause(500);
                                 saveMove(currentCard,true,false);
 				computer.drawACard(deck);
 				for(int k = 0; k < deck.length; k++) {
@@ -292,9 +308,9 @@ public static void saveMove(String card, boolean computer, boolean found){
 public static String mainMenu(){
    
     	System.out.println("What would you like to do?");
-        System.out.println("Type 'Play' to play game");
+        System.out.println("Type 'Play' to start a game of Go Fish");
         System.out.println("Type 'Exit' to exit");
-        System.out.println("Type 'Settings' to change settings");
+        System.out.println("Type 'Settings' to change various game settings, such as difficulty");
         
         Scanner in = new Scanner(System.in);
                
@@ -304,6 +320,8 @@ public static String mainMenu(){
         return nextState;
 }
 
+//submenu from the main menu
+//made by Will Wuttke
 public static String settingsMenu(){
         System.out.println("What would you like to change?");
         System.out.println("Type 'Difficulty' to change the Computer's memory ability");
@@ -315,6 +333,17 @@ public static String settingsMenu(){
         String nextState = in.nextLine();
         
         return nextState;
+}
+
+//method that pauses between prints to increase readability.
+//made by Will Wuttke
+public static void pause(int time){
+    try {
+        Thread.sleep(time); 
+    } catch (Exception e) {
+        e.printStackTrace();
+    }    
+
 }
 
 /*public static boolean gameOver(Player player1, Player player2){
