@@ -7,6 +7,7 @@ import java.io.*;
 public class GoFish {
         public static boolean SmartComp = false;
         public static int percentLying = 0;
+        public static int setsToWin = 7;
         
 	public static void main(String[] args) {
 		System.out.println("Welcome to Go Fish!\n");
@@ -44,6 +45,7 @@ public class GoFish {
 //*************************** Methods ********************************
 	
 //Run interface method loop that asks for user input on what to do next
+//made by Aaron Wise
 public static void runInterface() {
 		
 		String nextState = "";
@@ -64,8 +66,11 @@ public static void runInterface() {
 			settings();
 		}
 		
+                else if(nextState.equals("Help")) {
+                       help();
+                }
 		else {
-			System.out.println("INVALID COMMAND");
+			System.out.println("Invalid command, please try again!");
 		}
 			
 		}
@@ -115,6 +120,18 @@ public static void settings() {
                          }			
 		}
 		
+                else if(nextState.equals("Winning")) {
+			 System.out.println("Enter an integer value 1 to 7, which will determine how many sets a player needs to win.");
+			 Scanner in = new Scanner(System.in);
+                         int totalSets = in.nextInt();
+                         
+                         if(totalSets>=1 && totalSets <= 7){
+                            setsToWin = totalSets;
+                         } else {
+                             System.out.println("Command not recognized, sets to win are unchanged");
+                         }			
+		}
+                
 		else {
 			System.out.println("Command not recognized, please try again!");
 		}
@@ -124,6 +141,7 @@ public static void settings() {
 }
 
 //start game
+//made by Tao Xu
 public static void game() {
 		
 //setting up decks for the players
@@ -250,6 +268,7 @@ public static void game() {
 	}
 
 //shuffle a card deck
+//made by Tao Xu
 public static void shuf(Card[] arr) {
 		  int ran, tempr;
 		  String temps;
@@ -270,6 +289,7 @@ public static void shuf(Card[] arr) {
 
 
 //Make the pool deck unsorted, my deck and computer deck have nothing
+//made by Tao Xu
 public static void reset(Card[] p,Card[] m,Card[] c) {
 	for(int i = 0; i < 13; i++) {	
 		p[i] = new Card("Diamond",i+1);
@@ -286,6 +306,7 @@ public static void reset(Card[] p,Card[] m,Card[] c) {
 
 //Draw a card by making the pool deck object null, and creating a same
 //object in the same index for either my deck or computer deck
+//made by Tao Xu
 public static void drawACard(Card[] to, Card[] from) {
 	for(int i = 0; i < from.length; i++) {
 		if(from[i] != null) {
@@ -333,8 +354,10 @@ public static String mainMenu(){
    
     	System.out.println("What would you like to do?");
         System.out.println("Type 'Play' to start a game of Go Fish");
-        System.out.println("Type 'Exit' to exit");
+        System.out.println("Type 'Help' to receive rules and instructions on how to play Go Fish.");
         System.out.println("Type 'Settings' to change various game settings, such as difficulty");
+        System.out.println("Type 'Exit' to exit");
+
         
         Scanner in = new Scanner(System.in);
                
@@ -345,11 +368,12 @@ public static String mainMenu(){
 }
 
 //submenu from the main menu
-//made by Will Wuttke
+//made by William Wuttke
 public static String settingsMenu(){
         System.out.println("What would you like to change?");
         System.out.println("Type 'Difficulty' to change the Computer's memory ability");
         System.out.println("Type 'Lying' to set the Computer's ability to lie");
+        System.out.println("Type 'Winning' to set the number of sets a player needs to win the game");
         System.out.println("Type 'Exit' to go back to the main menu");
         
         Scanner in = new Scanner(System.in);
@@ -359,8 +383,35 @@ public static String settingsMenu(){
         return nextState;
 }
 
+//prints the rules of Go Fish
+//Made by William Wuttke
+public static void help(){
+    System.out.println("'Go Fish' is a card game played by two or more players.");
+    pause(1500);
+    System.out.println("In the game, the goal is to get as many 'Sets' of four cards as you can.");
+    pause(1500);
+    System.out.println("A player gains a set when they have all four cards of the same rank in their hand (i.e. all four Kings)");
+    pause(1500);
+    System.out.println("When this happens, the player loses those cards and permanently gains one Set.");
+    pause(1500);
+    System.out.println("To gain cards, players take turns asking their opponents for cards of a certain value.");
+    pause(1500);
+    System.out.println("To ask for cards you simply type the value of the card you wish to ask for; 2-10 for the numeric cards, J for Jack, Q for Queen, K for King, or A for Ace. You can also type 'Exit' at any time to go back to the main menu.");
+    pause(1500);
+    System.out.println("In the rules of Go Fish, you have to have a card of the value already in your hand to ask for it. However, both you and your opponent have the ability to lie about that if you wish.");
+    pause(1500);
+    System.out.println("If your opponent has the card you asked for in any suit or has multiple copies of it, they must give all of them to you. If they don't, you 'Go Fish' and draw a random card from the deck.");
+    pause(1500);
+    System.out.println("That's it! You and the computer simply take turns asking for cards until one of you gets 7 or more Sets (as there are only 13 total sets possible, so 7 guarantees victory).");
+    pause(1500);
+    System.out.println("You can change things like how much the computer lies, how many Sets you need to win the game, and the Computer's memory in the Settings menu off of the main menu.");
+    pause(1500);
+    System.out.println("Happy fishing!");
+    pause(1500);
+    runInterface();
+}
 //method that pauses between prints to increase readability.
-//made by Will Wuttke
+//made by William Wuttke
 public static void pause(int time){
     try {
         Thread.sleep(time); 
@@ -379,10 +430,10 @@ public static void gameOver(Player player, Player computer){
     boolean playerWins = false;
     
     
-    if(player.sets >=7){
+    if(player.sets >=setsToWin){
         gameOver = true;
         playerWins = true;
-    }else if(computer.sets >=7 ){
+    }else if(computer.sets >= setsToWin ){
         gameOver = true;
         playerWins = false;
 }
