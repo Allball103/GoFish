@@ -3,6 +3,8 @@ import java.util.Scanner;
 import java.util.Random;
 import java.io.*;
 
+//The Player class is responsible for all the actions that the human player can make and is the parent class of Computer.
+//Made by Aaron Wise, William Wuttke, and Tao Xu
 public class Player{
 	
 //variables
@@ -15,6 +17,7 @@ public class Player{
 	   hand = mine;
 }
 
+ 
 public void player()
    {
      
@@ -23,6 +26,7 @@ public void player()
    
  
    //Print out what cards are in the player's hand (will never be called for computer)
+   //Made by Tao Xu
    public void printHand() {
            System.out.println("You have "+sets+" sets.");
            GoFish.pause(500);
@@ -69,6 +73,7 @@ public void player()
         
    }
    //Print out the information about a card
+   //Made by Tao Xu
    public void info(Card card) {
    	//if the card object is null, print nothing
    	if (card != null) {
@@ -138,6 +143,7 @@ public void player()
 
    //Draw a card by making the pool hand object null, and creating a same
    //object in the same index for either my hand or computer hand
+   //Made by Tao Xu
    public void drawACard(Card[] from) {
    	for(int i = 0; i < from.length; i++) {
    		if(from[i] != null) {
@@ -150,7 +156,7 @@ public void player()
    	}
 
    //Sort the hand in ascending order as the hand changes
-   //Made by Tao
+   //Made by Tao Xu
    public void sort() {
        for(int i=0;i<hand.length;i++){
            for(int j=0;j<hand.length;j++){
@@ -170,6 +176,7 @@ public void player()
    }
    
 //check for set and remove from hand
+//Made by Tank
 public void checkForSet(){
     //this array has one element for each rank (1-13) that will count how many of each rank are in the hand
       int[] data  = {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -200,13 +207,14 @@ public void checkForSet(){
 }
 
    //Ask the other side what rank is needed
+   //Made by Tao Xu
     public String askRank() {
    	HashSet<Integer> set = new HashSet<Integer>();
    	for(int i = 0; i < hand.length; i++) {
    		if(hand[i] != null) {
    		set.add(hand[i].getRank());
    	}}
-   	System.out.println("What rank do you want to ask for?");
+   	System.out.println("What rank do you want to ask for? (Type 'Exit' to go back to the main menu)");
    	for(int i : set) {
    		switch(i) {
    		case 1:		System.out.println('A');break;
@@ -217,13 +225,34 @@ public void checkForSet(){
    		}
    	}
    	
-    Scanner in = new Scanner(System.in);
-   	String card = in.nextLine();
-   	System.out.println("\n");
-   	return card;
+        //input validation; a 1-10, A, J, Q, or K will return. Any other input will loop back.
+        while(true){
+            Scanner in = new Scanner(System.in);
+            String card = in.nextLine();
+            System.out.println("\n");
+            switch(card){
+                case "2": 
+                case "3": 
+                case "4": 
+                case "5": 
+                case "6": 
+                case "7": 
+                case "8": 
+                case "9": 
+                case "10": 
+                case "A": 
+                case "J": 
+                case "Q": 
+                case "K": return card; 
+                case "Exit": GoFish.runInterface();
+                default: System.out.print("Input not recognized. Please try again!");
+                    
+            }
+        }
    }
 
     //checks a players hand and returns a card if that card is in the players hand
+    //Made by Aaron Wise
 	public Card checkHand(String currentCard) {
 		
 		int card = 0;
@@ -263,6 +292,7 @@ public void checkForSet(){
 		
 	}
 //adds a card to the hand
+//Made by William Wuttke
 	public void addCard(Card card) {
 		hand[51] = card;
                 sort();
@@ -270,6 +300,7 @@ public void checkForSet(){
         }
 	
 //removes a card from the hand
+//Made by Aaron Wise
 public void removeCard(Card card) {
 	for(int i = 0; i < hand.length; i++) {
 	   if(hand[i] != null) {
