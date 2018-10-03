@@ -15,6 +15,7 @@ public class Computer extends Player {
 	//variables
 	Card[] hand;
     boolean smart;
+    String lastGuess = "";
    
   //methods
   //Constructors 
@@ -187,7 +188,12 @@ public class Computer extends Player {
  	        Random rand = new Random();
  		   	
  		   	int output = rand.nextInt(smartChoices.size());
+ 		   	if (lastGuess.equals(output+"")) {
+ 		   		
+ 		   	}
+ 		   	else {
  		   	return smartChoices.get(output)+"";
+	        }
 	        }
 	        catch(IOException e){
 	            System.out.println("Could not open file");
