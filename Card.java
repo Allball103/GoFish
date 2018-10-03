@@ -1,3 +1,5 @@
+//Card representation with suits, ranks, getters, and setters
+//Class by Tao Xu
 public class Card {
 
 	private String suit;
