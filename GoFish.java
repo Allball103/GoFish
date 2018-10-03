@@ -73,7 +73,7 @@ public static void runInterface() {
 
 	
 
-//Settings console interface
+//Settings console interface, similar to runInterface()
 //Made by Will Wuttke
 public static void settings() {
 	String nextState = "";
@@ -210,7 +210,7 @@ public static void game() {
 			//start of computers turn
 			computer.sort();
                         gameOver(player,computer);
-			computer.printHand();
+			//computer.printHand();
                         computer.saveHand(true);
 			currentCard = computer.askRank();
 			System.out.println("Computer asks for any " + currentCard+"s" );
@@ -224,6 +224,8 @@ public static void game() {
                                 saveMove(currentCard,true,true);
 				player.removeCard(card);
                                 gameOver(player,computer);
+                                System.out.println("Computer has "+computer.sets+" sets");
+
 				
 			}
 			//if card not found
@@ -368,15 +370,20 @@ public static void pause(int time){
 
 }
 
+//checks to see if one player has 7 or more sets (more than half of the possible sets). If so, ends the game.
+//By William Wuttke
 public static void gameOver(Player player, Player computer){
+    //is true if the game should be over
     boolean gameOver = false;
+    //is true if the player has won the game. Is false otherwise
     boolean playerWins = false;
+    
     
     if(player.sets >=7){
         gameOver = true;
         playerWins = true;
     }else if(computer.sets >=7 ){
-        gameOver = false;
+        gameOver = true;
         playerWins = false;
 }
     if(gameOver == true){
