@@ -173,6 +173,7 @@ public static void game() {
 				
 			//start of players turn
 			player.sort();
+                        gameOver(player,computer);
 			player.printHand();
                         player.saveHand(false);
                         
@@ -188,6 +189,7 @@ public static void game() {
 				player.addCard(card);
                                 saveMove(currentCard,false,true);
 				computer.removeCard(card);
+                                gameOver(player,computer);
 			}
 			//if card not found
 			else {
@@ -207,6 +209,7 @@ public static void game() {
 			
 			//start of computers turn
 			computer.sort();
+                        gameOver(player,computer);
 			computer.printHand();
                         computer.saveHand(true);
 			currentCard = computer.askRank();
@@ -220,6 +223,7 @@ public static void game() {
 				computer.addCard(card);
                                 saveMove(currentCard,true,true);
 				player.removeCard(card);
+                                gameOver(player,computer);
 				
 			}
 			//if card not found
@@ -312,6 +316,7 @@ public static void saveMove(String card, boolean computer, boolean found){
             pw.println("Player asked the Computer if they had any "+card+"s, but was told to Go Fish");
             pw2.println(card+",False,False");
         }
+        pw.println();
         
         pw.close();
         pw2.close();
@@ -363,7 +368,33 @@ public static void pause(int time){
 
 }
 
-/*public static boolean gameOver(Player player1, Player player2){
-    return player1.sets + player2.sets == 13;
-}*/
+public static void gameOver(Player player, Player computer){
+    boolean gameOver = false;
+    boolean playerWins = false;
+    
+    if(player.sets >=7){
+        gameOver = true;
+        playerWins = true;
+    }else if(computer.sets >=7 ){
+        gameOver = false;
+        playerWins = false;
+}
+    if(gameOver == true){
+        try{
+            PrintWriter pw = new PrintWriter(new FileOutputStream( new File("GoFishData.txt"), true)); 
+       
+            if(playerWins == true){
+                System.out.println("You win!");
+                pw.println("You win!");
+            } else{
+                System.out.println("The computer wins!");
+                pw.println("The computer wins!");
+        }
+         } catch(IOException e){
+            System.out.println("Could not print to file");
+            
+        }
+        runInterface();
+    }
+}
 }
