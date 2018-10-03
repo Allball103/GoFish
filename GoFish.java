@@ -141,7 +141,7 @@ public static void settings() {
 }
 
 //start game
-//made by Tao Xu
+//made by Aaron Wise and Tao Xu
 public static void game() {
 		
 //setting up decks for the players
@@ -231,12 +231,13 @@ public static void game() {
 			//computer.printHand();
                         computer.saveHand(true);
 			currentCard = computer.askRank();
-			System.out.println("Computer asks for any " + currentCard+"s" );
+			String output = checkRank(currentCard);
+			System.out.println("Computer asks for any " + output+"s" );
                         pause(500);
 			card = player.checkHand(currentCard);
 			//if card found
 			if (card != null) {
-				System.out.println("You Had It. Computer took your " + currentCard+"s");
+				System.out.println("You Had It. Computer took your " + output+"s");
                                 pause(500);
 				computer.addCard(card);
                                 saveMove(currentCard,true,true);
@@ -266,6 +267,31 @@ public static void game() {
 			
 
 	}
+
+	//Converts fron rank number to face card letters
+	// Made by Aaron wise
+private static String checkRank(String currentCard) {
+	String output = currentCard;
+	
+	if (currentCard.equals("1")) {
+		output = "A";
+	}
+	
+	else if (currentCard.equals("11")) {
+		output = "J";
+	}
+	
+	else if (currentCard.equals("12")) {
+		output = "Q";
+	}
+	
+	else if (currentCard.equals("13")) {
+		output = "K";
+	}
+	
+	return output;
+	
+}
 
 //shuffle a card deck
 //made by Tao Xu
