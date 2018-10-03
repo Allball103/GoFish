@@ -4,7 +4,7 @@ import java.util.Random;
 import java.io.*;
 
 //The Player class is responsible for all the actions that the human player can make and is the parent class of Computer.
-//Made by Aaron Wise, William Wuttke, and Tao Xu
+//Made by Aaron Wise, William Wuttke, Tank, and Tao Xu
 public class Player{
 	
 //variables
