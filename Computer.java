@@ -1,3 +1,4 @@
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
@@ -6,12 +7,17 @@ import java.util.Vector;
 import java.io.*;
 import java.util.ArrayList;;
 
+//The Computer class is responsible for all the actions that the Computer can make and extends the Player class
+//Made by Aaron Wise
+
 public class Computer extends Player {
 
+	//variables
 	Card[] hand;
     boolean smart;
    
-        
+  //methods
+  //Constructors 
 	public Computer(Card[] mine, boolean diff) {
 		
 		super(mine);
@@ -20,13 +26,16 @@ public class Computer extends Player {
        
 	}
 
+	//Ask the other side what rank is needed
+	 //Made by Aaron Wise and Tao Xu
 	 public String askRank() {
 		 
 	
 		 
-		 
+		 //if Hard difficulty was set in the settings
 		 if (smart) {
 		 
+		//read in turn data
 		 Vector<String> inPlayerHand = new Vector();
 		 boolean pFished = false;
 	        try{
@@ -36,8 +45,7 @@ public class Computer extends Player {
 	        
 	        while (sc.hasNextLine()) {
 	        	String[] sInput = sc.nextLine().split(",");
-	        
-	        	
+	       
 	        	
 	    		//converts letters to rank
 	    		if (sInput[0].equals("A")) {
@@ -57,7 +65,7 @@ public class Computer extends Player {
 	    		}
 	    		
 	        	
-	        
+	    		//seperates turn data into what the computer thinks is in the players hand
 	        	if(sInput[1].equals("False") && sInput[2].equals("False") ) {
 	        		inPlayerHand.add(sInput[0]);
 	        		
@@ -84,9 +92,10 @@ public class Computer extends Player {
 	    	
 	        }
 	        
-	     
+	        //start of computer picking choices to ask
 	        Vector<Integer> smartChoices = new Vector();
 	        
+	        //Checks player hand against what it thinks the player has and if there are matches adds them to smartChoices
 	        for(int i = 0; i < inPlayerHand.size();i++) {
 	        	for(int j = 0; j < hand.length;j++) {
 	        		if(hand[j] != null) {
@@ -100,8 +109,10 @@ public class Computer extends Player {
 	        	}
 	        }
 	        
+	        //If player went fishing checks hand for multiples and adds to smart choices. (only if smartChoices is still empty)
 	        if(pFished) {
 	        
+	        	
 	        if(smartChoices.isEmpty()) {
 	        	
 	        	for(int i = 0; i < hand.length;i++) {
@@ -125,7 +136,7 @@ public class Computer extends Player {
 	        	}
 	        	
 	        }
-	        
+	        //Default hand added to smartChoices if still empty
 	        if(smartChoices.isEmpty()) {
 	        	for(int i = 0; i < hand.length; i++) {
 			   		if(hand[i] != null) {
@@ -158,10 +169,10 @@ public class Computer extends Player {
 	        				
 	        				}
 	        			}
-	        				}
 	        		}
 	        		}
-	        	}
+	        		}
+	        		}
 	        	for(int i = 0; i < hand.length; i++) {
 			   		if(hand[i] != null) {
 			   		smartChoices.add(hand[i].getRank());
@@ -169,13 +180,10 @@ public class Computer extends Player {
 			   		}
 	        	}
 	        }
-	        
-	        
-	        	
-	        
-	        
+	   
 	        }
-	        System.out.println(smartChoices.size()); 	
+	       
+	      	//A choice is randomly picked from smartChoice and returned
  	        Random rand = new Random();
  		   	
  		   	int output = rand.nextInt(smartChoices.size());
@@ -187,8 +195,9 @@ public class Computer extends Player {
 		 }
 		 
 		 
+		 //When Difficulty is set to easy
 		 
-		 
+		//A choice is randomly picked from hand and returned
 		 Vector<Integer> choices = new Vector();
 		   	for(int i = 0; i < hand.length; i++) {
 		   		if(hand[i] != null) {
@@ -201,12 +210,10 @@ public class Computer extends Player {
 		   	int output = rand.nextInt(choices.size());
 		   	return choices.get(output)+"";
 	 }
-		   // Scanner in = new Scanner(System.in);
-		   	//String card = in.nextLine();
-		   	//System.out.println("\n");
-		   	//return card;
 		   
-
+		   
+	//checks a players hand and returns a card if that card is in the players hand
+	//Made by Aaron Wise
 public Card checkHand(String currentCard, int percentLying) {
 	
 	int card = 0;
