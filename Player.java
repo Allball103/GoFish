@@ -24,7 +24,8 @@ public void player()
  
    //Print out what cards are in the player's hand (will never be called for computer)
    public void printHand() {
-       
+           System.out.println("You have "+sets+" sets.");
+           GoFish.pause(500);
 	   System.out.println("Your Hand:");
            GoFish.pause(500);
    	   int count = 0;
@@ -40,6 +41,7 @@ public void player()
    		}
    
    //same as printHand() but saves to a file instead of to the console
+   //made by William Wuttke
    public void saveHand(boolean computer) {
        try{
            PrintWriter pw = new PrintWriter(new FileOutputStream( new File("GoFishData.txt"), true)); 
@@ -97,6 +99,7 @@ public void player()
    }
    
    //same as info but saves to a file instead of printing
+   //by William Wuttke
    public void saveInfo(Card card){
        //if the card object is null, print nothing
    	if (card != null) {
@@ -147,7 +150,7 @@ public void player()
    	}
 
    //Sort the hand in ascending order as the hand changes
-   //Made by Tau
+   //Made by Tao
    public void sort() {
        for(int i=0;i<hand.length;i++){
            for(int j=0;j<hand.length;j++){
@@ -167,7 +170,6 @@ public void player()
    }
    
 //check for set and remove from hand
-//made by Will Wuttke
 public void checkForSet(){
     //this array has one element for each rank (1-13) that will count how many of each rank are in the hand
       int[] data  = {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -266,14 +268,7 @@ public void checkForSet(){
                 sort();
                 
         }
-		/*for(int i = 0; i < hand.length; i++) {
-			if(hand[i] != null) {	
-		
-			 hand[i] = card;
-			 i = hand.length;
-			}
-		}
-			}*/
+	
 //removes a card from the hand
 public void removeCard(Card card) {
 	for(int i = 0; i < hand.length; i++) {
