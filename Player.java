@@ -48,7 +48,7 @@ public void player()
            } else {
                 pw.println("Player's hand:");
            }    
-           pw.println();
+           pw.close();
            int count = 0;
    		for(int i = 0; i < hand.length; i++) {
    		saveInfo(hand[i]);
@@ -57,6 +57,7 @@ public void player()
    		}
    		}
                 //add a blank line for clarity
+                pw = new PrintWriter(new FileOutputStream( new File("GoFishData.txt"), true)); 
                 pw.println();
                 pw.close();
 
@@ -186,7 +187,7 @@ public void checkForSet(){
       }
       if(isSet == true){
         sets+=1;
-        System.out.println("You have a new set!");
+        System.out.println("Current player has a new set!");
         for(int i = 0;i < hand.length; i++){
             if(hand[i] != null){
               if(hand[i].getRank() == set){
@@ -263,6 +264,7 @@ public void checkForSet(){
 	public void addCard(Card card) {
 		hand[51] = card;
                 sort();
+                
         }
 		/*for(int i = 0; i < hand.length; i++) {
 			if(hand[i] != null) {	
