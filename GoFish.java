@@ -107,9 +107,9 @@ public static void settings() {
 			 System.out.println("Enter an integer value 0 to 100");
 			 Scanner in = new Scanner(System.in);
                          int liechance = in.nextInt();
-                         in.nextLine();
+                         
                          if(liechance>=0 && liechance <= 100){
-                            percentLying = in.nextInt();
+                            percentLying = liechance;
                          } else {
                              System.out.println("Command not recognized, lying chance is unchanged");
                          }			
@@ -159,6 +159,15 @@ public static void game() {
                             System.out.println("Could not print to file");
                         }
                         
+                        //create the PrintWriter file; will either make a new file or delete the contents of the old file and start fresh
+                        try{
+                        PrintWriter pw = new PrintWriter(new FileOutputStream( new File("GoFishTurnData.txt"))); 
+                        //pw.println("Welcome to Go Fish!");
+                        pw.close();
+                        } catch(IOException e){
+                            System.out.println("Could not print to file");
+                        }
+                        
 			//for loop for ten thousand turns
 			for(int i = 0; i < 10000; i++) {
 				
@@ -198,7 +207,7 @@ public static void game() {
 			
 			//start of computers turn
 			computer.sort();
-			//computer.printHand();
+			computer.printHand();
                         computer.saveHand(true);
 			currentCard = computer.askRank();
 			System.out.println("Computer asks for any " + currentCard+"s" );
@@ -288,16 +297,24 @@ public static void saveMove(String card, boolean computer, boolean found){
     try{
         
         PrintWriter pw = new PrintWriter(new FileOutputStream( new File("GoFishData.txt"), true)); 
+        PrintWriter pw2 = new PrintWriter(new FileOutputStream( new File("GoFishTurnData.txt"), true));
+        
         if(computer == true && found == true ){
             pw.println("Computer successfully asked the player if they had any "+card+"s");
+            pw2.println(card+",True,True");
         } else if(computer == true && found == false){
             pw.println("Computer asked the player if they had any "+card+"s, but was told to Go Fish");
+        	pw2.println(card+",True,False");
         } else if(computer == false && found == true){
             pw.println("Player successfully asked the Computer if they had any "+card+"s");
+            pw2.println(card+",False,True");
         } else{
             pw.println("Player asked the Computer if they had any "+card+"s, but was told to Go Fish");
+            pw2.println(card+",False,False");
         }
+        
         pw.close();
+        pw2.close();
         
     } catch(IOException e){
         System.out.println("Could not print to file");    }
